@@ -14,7 +14,7 @@ let b = z as string; // b: string
 
 으로 z를 string type으로 단언해준 뒤 그것을 b에 부여하였다. 이 결과 b는 문자열 타입을 갖게 된다.
 
-![img.png](img.png)
+![img.png](./img.png)
 예시를 보자. 자바스크립트에서 사용하는 대표적인 DOM API중 하나가 querySelector인데, 이는 HTML에서 div 태그를 가진 것을 가져온다 라고 생각하면 된다. 아무튼, 이렇게 div 태그를 div라는 이름으로 가져온다면 이 div의 타입은, 위의 사진을 보면 알겠지만 HTMLDivElement로 타입스크립트 자체적으로 추론을 하고 있다.
 ```javascript
 const div = document.querySelector('div');
