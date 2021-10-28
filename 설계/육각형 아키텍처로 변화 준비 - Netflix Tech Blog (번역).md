@@ -33,6 +33,8 @@ Netflix Originals의 제작이 매년 증가함에 따라 컨텐츠 제작 과�
 
 이러한 세 가지 주요 유형의 개체를 사용하면 데이터가 보관되는 위치, 비즈니스 로직의 트리거가 되는 방법에 대한 지식이나 관심 없이 비즈니스 로직을 정의할 수 있습니다. 비즈니스 논리의 바깥에는 다음과 같은 데이터 소스와 전송 계층이 있습니다.
 
+![퇴사](./Hexagonal%20Architecture.png)
+Hexagonal Architecture의 의존성 그래프는 안쪽으로 이동합니다.
 ```
 src
 │   app.js          # App entry point
