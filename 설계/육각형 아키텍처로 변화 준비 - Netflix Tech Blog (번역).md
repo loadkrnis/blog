@@ -35,6 +35,12 @@ Netflix Originals의 제작이 매년 증가함에 따라 컨텐츠 제작 과�
 
 ![Hexagonal Architecture](./Hexagonal%20Architecture.png)
 Hexagonal Architecture의 의존성 그래프는 안쪽으로 이동합니다.
+
+기존의 전통적인 계층 구조는 모든 의존성이 한 방향을 가리킵니다. 각각의 계층은 아래의 계층에 따라 쉽게 변하게 됩니다. 전송 계층(transport layer)은 인터랙터(intteractors)에 의존할 것이고, 인터랙터는 지속성 계층(persistence layer)에 의존할 것입니다.
+
+반면에 Hexagonal Architecture에서 모든 의존성은 내부를 가리킵니다. 핵심 비즈니스로직은 전송 계층이나 데이터베이스에 대해 관심사가 분리되어 있습니다. 여전히 전송 계층은 인터랙터를 사용하는 방법을 알고 있습니다. 그리고 데이터베이스는 레파지토리 인터페이스를 준수하는 방법을 알고 있습니다.
+
+이를 통해 다른 Studio 시스템의 불가피한 변경에 대비하고 있습니다. 그리고 필요할 때마다 데이터베이스 스왑 작업을 쉽게 수행할 수 있습니다.
 ```
 src
 │   app.js          # App entry point
