@@ -36,7 +36,7 @@ Netflix Originals의 제작이 매년 증가함에 따라 컨텐츠 제작 과�
 - **데이터베이스(Data Sources)**는 서로 다른 스토리지 구현에 대한 어댑터입니다. SQL 데이터베이스(레일즈 또는 Java JPA의 액티브 레코드 클래스), 탄력적 검색 어댑터, REST API 또는 CSV 파일이나 해시 같은 간단한 것에 대한 어댑터일 수 있습니다. Repository는 데이터베이스 정의된 것을 메소드를 구현하고 데이터를 가져오거나 푸시하는 것을 구현합니다.
 - 전송 계층은 비즈니스 로직을 수행하기 위해 interactor를 트리거할 수 있습니다. 우리는 전송 계층을 우리 시스템의 input으로 취급합니다. 마이크로서비스의 가장 일반적인 전송 계층은 HTTP **API 계층**과 요청을 처리하는 Controller입니다. 비즈니스 로직을 인터렉터에 추출함으로써 특정 전송 계층 또는 컨트롤러 구현과 결합되지 않습니다. 인터랙터는 컨트롤러뿐만 아니라 이벤트, 크론 작업 또는 명령줄에 의해 트리거될 수 있습니다.
 
-![Hexagonal Architecture](./Hexagonal%20Architecture.png)
+![Hexagonal Architecture](./HexagonalArchitecture.png)
 Hexagonal Architecture의 의존성 그래프는 안쪽으로 이동합니다.
  
 기존의 전통적인 계층 구조는 모든 의존성이 한 방향을 가리킵니다. 각각의 계층은 아래의 계층에 따라 쉽게 변하게 됩니다. 전송 계층(transport layer)은 인터랙터(intteractors)에 의존할 것이고, 인터랙터는 지속성 계층(persistence layer)에 의존할 것입니다.
