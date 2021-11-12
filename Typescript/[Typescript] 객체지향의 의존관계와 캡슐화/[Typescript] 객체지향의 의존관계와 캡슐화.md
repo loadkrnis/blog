@@ -71,7 +71,7 @@ return true;
 
 ```ts
 // .. DB를 조회하는 로직
-// DB에서 회원의 만료 날짜를 expireDate에 성병을 gender에 저장했다고 가정
+// DB에서 회원의 만료 날짜를 expireDate에 성별을 gender에 저장했다고 가정
 const expireDate: Date;
 const gender: Gender;
 
@@ -90,12 +90,13 @@ return true;
 ```
 
 뭔가 보기도 너무 힘든 코드가 됩니다. 하지만 여성분들에게 이런 서비스를 제공해보니 GX존이 꽉차게 되어 기존 회원들의 불만이 폭주합니다. 그래서 GX존 입구에 입출입 단말기를 하나 더 설치하여 30일 서비스 기간인
-여성 회원은 GX존 출입을 통제하고자 합니다. 그럼 위에 작성한 코드를 재활용할 수 있을까요? 제 생각에는 굉장히 힘들 것 같습니다. 만일 이러한 프로그램을 관리하는 개발자가 바뀌었다면 그 헬스장에게는 최악의 상황일
-것입니다. 이러한 데이터를 직접 사용하는 절차지향적인 구조의 코드는 데이터의 변화나 새로운 정책 요구사항에 대응하는데 유연하지 못 한 구조입니다.
+여성 회원은 헬스장 출입은 가능하지만 GX존 출입은 통제하고자 합니다. 그럼 위에 작성한 코드를 재활용할 수 있을까요? 제 생각에는 굉장히 힘들 것 같습니다. 만일 이러한 프로그램을 관리하는 개발자가 바뀌었다면 그
+헬스장에게는 최악의 상황일 것입니다. 왜냐하면 위에서 작성된 코드는 해석하기 굉장히 힘들기 때문입니다. 이러한 데이터를 직접 사용하는 절차지향적인 구조의 코드는 데이터의 변화나 새로운 정책 요구사항에 대응하는데
+유연하지 못 한 구조입니다.
 
 ## 객체지향 방식
 
-위 코드의 만료기한 관련 정책을 검사하는 if문의 로직을 객체지향 방식인 `캡슐화`를 이용하여 재구성 해보겠습니다. 먼저 클래스를 작성하겠습니다.
+위 코드의 만료기한 관련 정책을 검사하는 절차지향 방식을 객체지향 방식인 `캡슐화`를 이용하여 재구성 해보겠습니다. 먼저 클래스를 작성하겠습니다.
 
 ```ts
 // 클래스 선언
@@ -108,17 +109,64 @@ class Member {
     this.gender = gender;
   }
 
-  isExpired() {
+  isExpired(): boolean {
     return new Date() > this.expireDate();
+  }
+
+  isPossible(): boolean {
+    return this.isExpired();
   }
 }
 ```
 
-아래는 위 클래스를 사용하는 서비스 코드입니다.
+아래는 `Member` 클래스를 사용하는 서비스 코드입니다.
 
 ```ts
 // .. DB를 조회하는 로직
-// DB에서 회원의 만료 날짜를 expireDate에 성병을 gender에 저장했다고 가정
+// DB에서 회원의 만료 날짜를 expireDate에 성별을 gender에 저장했다고 가정
+const expireDate: Date;
+const gender: Gender;
+const member = new Member(expireDate, gender);
+
+return member.isPossible();
+```
+
+만약 위와 같은 상황에서 똑같이 **여성 회원인 경우 30일 입장 가능**을 구현한다면 아래와 같이 클래스를 변경하겠습니다.
+
+```ts
+// 클래스 선언
+class Member {
+  private expireDate: Date;
+  private gender: Gender;
+
+  constructor(expireDate: Date, gender: Gender) {
+    this.expireDate = expireDate;
+    this.gender = gender;
+  }
+
+  isExpiredAfterDays(day): boolean { // 만료일에 day가 지났는지 여부
+    const now = new Date();
+    return new Date(now.setDate(now.getDate() + day));
+  }
+
+  isWomanBenefit(): boolean {
+    return new Date() > this.isExpiredAfterDays(30) && this.gender === Gender.FEMALE;
+  }
+
+  isExpired(): boolean {
+    return new Date() > this.expireDate();
+  }
+
+  isPossible(): boolean {
+    return this.isExpired() || this.isWomanBenefit();
+  }
+}
+```
+
+단지 `Member`의 isPossible() 메소드의 구현부만 바꾸었을 뿐 이를 사용하는 서비스 코드는 수정할 부분이 없습니다. 즉 서비스 코드의 변화 없이 요구사항을 구현할 수 있습니다. 그럼 **또 다시 GX존
+입구에 입출입 단말기를 하나 더 설치하여 30일 서비스 기간인 여성 회원은 헬스장 출입은 가능하지만 GX존 출입을 금지**하게 된다면 해당 단말기의 서비스 코드만 재작성하면 됩니다.
+
+```ts
 const expireDate: Date;
 const gender: Gender;
 const member = new Member(expireDate, gender);
@@ -126,3 +174,5 @@ const member = new Member(expireDate, gender);
 return member.isExpired();
 ```
 
+절차지향 방식의 코드보다 가독성 측면에서도 간결해졌습니다. 이렇게 캡슐화를 통해 정보를 은닉하고, 객체간의 결합도(의존성의 정도)가 낮아지고 응집도는 높아지게 되었습니다. 그리고 코드의 재사용성이 높아졌으며, 기능
+수정사항에 대해 유연함을 가지게 되었습니다.
