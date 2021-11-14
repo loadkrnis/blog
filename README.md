@@ -1,19 +1,18 @@
 # blog
 https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니다.
 
-   
+
 ## Typescript
 ### 문법
 - [[Typescript] 타입 단언, 타입 가드 ,타입 호환](https://charming-kyu.tistory.com/29)
 ### OOP
 - [[Typescript] 객체지향의 의존관계와 캡슐화](https://charming-kyu.tistory.com/34)
 
-   
+
 ## 설계
 - [육각형 아키텍처로 변화 준비 - Netflix Tech Blog (번역)](https://charming-kyu.tistory.com/32)
+   
 
-   
-   
 ## 회고
 ### 배움
 - [[회고] 첫 회사와 작별](https://charming-kyu.tistory.com/27)
