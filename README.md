@@ -13,6 +13,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 - [육각형 아키텍처로 변화 준비 - Netflix Tech Blog (번역)](https://charming-kyu.tistory.com/32)
 
    
+   
 ## 회고
 ### 배움
 - [[회고] 첫 회사와 작별](https://charming-kyu.tistory.com/27)
