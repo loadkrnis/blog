@@ -1,6 +1,9 @@
 # blog
 https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니다.
 
+## Javascript
+### 구조
+- [[javascript] Primitive Type(원시 타입) vs Reference Type (참조 타입)](https://charming-kyu.tistory.com/20)
 
 ## Typescript
 ### 문법
