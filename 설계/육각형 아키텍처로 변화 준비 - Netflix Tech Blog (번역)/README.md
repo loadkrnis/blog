@@ -96,14 +96,3 @@ Repository는 데이터베이스를 구현한 단순한 인터페이스이기 �
 그리고 프로젝트를 시작할 때 구축 중인 시스템에 대한 정보가 가장 적어도 할 수 있습니다. 우리는 프로젝트 정보에 대한 결정 부족으로인해 [패러독스로 이어지는 아키텍처](https://twitter.com/tofo/status/512666251055742977)에 갇히면 안 됩니다.
 
 우리가 내린 결정은 현재 우리의 요구에 부합하며 우리가 빠르게 움직일 수 있게 했습니다. Hexagonal Architecture의 가장 큰 장점은 향후 바뀌게 되는 요구사항을 충족하기 위해 애플리케이션을 유연하게 유지한다는 것입니다.
-```
-│   app.js          # App entry point
-└───api             # Express route controllers for all the endpoints of the app
-└───config          # Environment variables and configuration related stuff
-└───jobs            # Jobs definitions for agenda.js
-└───loaders         # Split the startup process into modules
-└───models          # Database models
-└───services        # All the business logic is here
-└───subscribers     # Event handlers for async task
-└───types           # Type declaration files (d.ts) for Typescript
-```
