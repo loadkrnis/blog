@@ -2,10 +2,10 @@
 
 `SOLID` 는 아래의 5가지 원칙으로 만들어진 단어입니다.
 
-- **S**RP (Single responsibility priciple) 단일 책임 원칙
+- **S**RP (Single segregation principle) 단일 책임 원칙
 - **O**CP (Open/closed principle) 개방-폐쇄 원칙
 - **L**SP (Liskov substitution principle) 리스코프 치환 원칙
-- **I**SP (Interfase segregagion principle) 인터페이스 분리 원칙
+- **I**SP (Interface segregation principle) 인터페이스 분리 원칙
 - **D**IP (Dependency inversion principle) 의존관계 역전 원칙
 
 ### SRP - 단일 책인 원칙
@@ -52,13 +52,13 @@ AOP(Aspect Oriented Programming) 또한 SRP의 예제가 될 수 있습니다. �
 ```ts
 class KakaoMessenger {
   boot(): void {
-    console.log('Kakao Bootting..');
+    console.log('Kakao Booting..');
   }
 }
 
 class Computer {
   boot(): void {
-    console.log('Computer Bootting..');
+    console.log('Computer Booting..');
     const kakaoMessenger = new KakaoMessenger();
     kakaoMessenger.boot();
   }
@@ -68,14 +68,14 @@ const computer = new Computer();
 computer.boot();
 ```
 
-위의 코드에서 컴퓨터를 실행하면 카카오 메신저가 함께 부팅되는 코드를 작성하였습니다. 하지만 카카오톡을 사용하지 않고 라인을 사용한다는 변경사항이 생기면 어떻게 될까요? 위의 코드에서 카카오를 새로 생성하는 것이 아니라 라인을 생성하고 라인에게 `boot`를 실행하라는 메세지를 보내야 할 것입니다. 
+위의 코드에서 컴퓨터를 실행하면 카카오 메신저가 함께 부팅되는 코드를 작성하였습니다. 하지만 카카오톡을 사용하지 않고 라인을 사용한다는 `변경사항`이 생기면 어떻게 될까요? 위의 코드에서 카카오를 새로 생성하는 것이 아니라 라인을 생성하고 라인에게 `boot`를 실행하라는 메세지를 보내야 할 것입니다. 
 
 즉, 아래와 같이 수정해야 합니다.
 
 ```ts
 class LineMessenger {
   boot(): void {
-    console.log('Line Bootting..');
+    console.log('Line Booting..');
   }
 }
 
@@ -83,7 +83,7 @@ class Computer {
   private line: LineMessenger;
   
   boot(): void {
-    console.log('Computer Bootting..');
+    console.log('Computer Booting..');
     const lineMessenger = new LineMessenger();
     lineMessenger.boot();
   }
@@ -95,5 +95,50 @@ computer.boot();
 
 이렇게 모든 클래스를 전부 다 수정하게 되었습니다. 즉, 외부의 변경사항에 의해서 내부의 `Production Code`에 변경사항이 발생하고, 모든 클래스의 메소드를 확인해가며 전부 수정해야합니다.
 
-이러한 문제를 해경하기 위해서는 아래와 같이 인터페이스를 통해 메신저를 분리하는 것이 좋습니다.
+이러한 문제를 해경하기 위해서는 아래와 같이 추상화를 통해 메신저를 분리하는 것이 좋습니다.
 
+```ts
+class Messenger {
+  private name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  boot(): void {
+    console.log(`${this.name} Booting..`);
+  }
+}
+
+class LineMessenger extends Messenger {
+  constructor() {
+    super('Line');
+  }
+}
+
+class Computer {
+  private messenger: Messenger;
+
+  boot(): void {
+    console.log('Computer Booting..');
+    this.messenger.boot();
+  }
+
+  setMessenger(messenger: Messenger): void {
+    this.messenger = messenger;
+  }
+}
+
+const computer = new Computer();
+computer.setMessenger(new LineMessenger());
+computer.boot();
+// Computer Booting..
+// Line Booting..
+```
+
+이렇게 작성하는 경우 어떠한 메신저로 변경되어도 하나의 클래스만 추가함으로써 외부의 변경에 유연하게 대응할 수 있습니다. 그리고 내부적으로 `Production Code`를 변경하지 않는 OCP원칙을 지키는 코드를 완성할 수 있습니다.
+
+하지만 클래스를 추가하는 것 또한 결국 `Production Code`의 변경을 의미한다고 생각할 수 있습니다. 하지만 아래의 설명으로 답할 수 있습니다.
+ - 위 코드에서 메신저가 어떤 메신저인지 판별하는 `if`문을 통해 해결할 수도 있습니다. 하지만 이 방법은 기존 코드의 전체 작동방식을 이해하고 있어야합니다. 즉 `Computer`와 `Messenger` 클래스의 내부 구현사항을 전부 명확히 알고있어야 메신저 변경 작업이 가능합니다.
+ - 하나의 추상클래스로 분리하게 됨으로써 새로운 카카오톡 메신저를 추가해도 기존 `Computer`클래스의 수정없이 `KakaoMessenger` 클래스 하나만 추가한다면 내부 동작원리를 알지 못해도 메신저의 종류를 증가시킬 수 있습니다.
+`OCP`의 관점은 클래스를 변경하지 않고도 대상 클래스의 환경을 변경할 수 있는 설계가 되어야합니다.
