@@ -12,6 +12,9 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 - [[Typescript] 객체지향의 의존관계와 캡슐화](https://charming-kyu.tistory.com/34)
 - [[Typescript] 객체지향의 SOLID 원칙](https://charming-kyu.tistory.com/35) 
 
+## Node.js
+### sequelize
+- [[sequelize] 모델 커스텀 메서드 선언 방법 (ES6)](https://charming-kyu.tistory.com/22)
 
 ## 설계
 - [육각형 아키텍처로 변화 준비 - Netflix Tech Blog (번역)](https://charming-kyu.tistory.com/32)
