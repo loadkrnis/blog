@@ -20,13 +20,16 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 ### sequelize
 - [[sequelize] 모델 커스텀 메서드 선언 방법 (ES6)](https://charming-kyu.tistory.com/22)
 
+## AWS
+### CloudFront
+- [AWS S3 + CloudFront 대용량 파일 전송](https://charming-kyu.tistory.com/7)
+
 ## 설계
 - [육각형 아키텍처로 변화 준비 - Netflix Tech Blog (번역)](https://charming-kyu.tistory.com/32)
 
 ## 보안
 ### OAuth2.0
 - [OAuth 2.0 개념 총 정리](https://charming-kyu.tistory.com/36)
-   
 
 ## 회고
 ### 배움
