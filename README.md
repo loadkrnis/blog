@@ -21,7 +21,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 
 ## 보안
 ### OAuth2.0
-- [[보안] OAuth 2.0 개념 총 정리](https://charming-kyu.tistory.com/36)
+- [OAuth 2.0 개념 총 정리](https://charming-kyu.tistory.com/36)
    
 
 ## 회고
