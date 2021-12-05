@@ -41,6 +41,7 @@ OAuth 2.0 프로토콜에서는 다양한 클라이언트 환경에 적합하도
 **권한 부여 승인을 위해 자체 생성한 Authorization Code를 전달하는 방식으로 많이 쓰이고 기본이 되는 방식입니다.** 간편 로그인 기능에서 사용되는 방식으로 클라이언트가 사용자를 대신하여 특정 자원에 접근을 요청할 때 사용되는 방식입니다. 보통 타사의 클라이언트에게 보호된 자원을 제공하기 위한 인증에 사용됩니다. Refresh Token의 사용이 가능한 방식입니다.
 
 ![Authorization Grant: Authorization Code](./Authorization_Grant_Authorization_Code.png)
+
 권한 부여 승인 요청 시 `response_type`을 `code`로 지정하여 요청합니다. 이후 클라이언트는 권한 서버에서 제공하는 로그인 페이지를 브라우저를 띄워 출력합니다. 이 페이지를 통해 사용자가 로그인을 하면 권한 서버는 권한 부여 승인 코드 요청 시 전달받은 `redirect_url`로 `Authorization Code`를 전달합니다. `Authorization Code`는 권한 서버에서 제공하는 API를 통해 `Access Token`으로 교환됩니다.
 
 ### 2. Implicit Grant │ 암묵적 승인 방식
