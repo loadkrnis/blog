@@ -76,19 +76,3 @@ OAuth 2.0 프로토콜에서는 다양한 클라이언트 환경에 적합하도
 OAuth2의 권한 부여 방식 중 가장 간단한 방식으로 클라이언트 자신이 관리하는 리소스 혹은 권한 서버에 해당 클라이언트를 위한 제한된 리소스 접근 권한이 설정되어 있는 경우 사용됩니다. 이 방식은 자격증명을 안전하게 보관할 수 있는 클라이언트에서만 사용되어야 하며, `Refresh Token`은 사용할 수 없습니다.
 
 ![Authorization Grant: Client Credentials](Authorization_Grant_Client_Credentials.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
