@@ -17,7 +17,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 - [[sequelize] 모델 커스텀 메서드 선언 방법 (ES6)](https://charming-kyu.tistory.com/22)
 
 ## 설계
-- [[설계] 육각형 아키텍처로 변화 준비 - Netflix Tech Blog (번역)](https://charming-kyu.tistory.com/32)
+- [육각형 아키텍처로 변화 준비 - Netflix Tech Blog (번역)](https://charming-kyu.tistory.com/32)
 
 ## 보안
 ### OAuth2.0
