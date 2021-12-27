@@ -8,7 +8,7 @@
 
 의존성 주입은 하나의 패턴이다. 만약 의존되는 클래스를 매개변수로 전달해준다면, 모듈 안에서 클래스를 불러오거나 새로 만드는 것을 피할 수 있다. 아래 코드는 간단한 service 모듈이다.
 
-```
+```javascript
 //users-service.js
 const User = require('./User');
 const UsersRepository = require('./users-repository');
