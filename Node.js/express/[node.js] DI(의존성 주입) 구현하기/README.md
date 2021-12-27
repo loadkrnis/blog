@@ -37,7 +37,7 @@ module.exports = {
 
 아래는 기존에 작성한 테스트 코드이다.
 
-```
+```javascript
 const UsersRepository = require('./users-repository');
 const UsersService = require('./users');
 const sinon = require('sinon') ;
@@ -62,7 +62,7 @@ describe('Users service', () => {
 
 확실히 테스트 코드가 복잡하다. DI를 이용하여 위 코드를 고쳐보겠다. 해야 할 것은 오로지 usersRepository를 매개변수로 넘겨주는 게 끝이다.
 
-```
+```javascript
 const User = require('./User');
 
 function UsersService(usersRepository) { // 매개 변수로 넘긴다.
@@ -87,7 +87,7 @@ module.exports = UsersService
 
 이제 `UserService` 는 `repository` 와 결합되어 있지 않은 상태이다. 물론 `userRepository` 를 매개변수로 전달받아야만 실행할 수 있다. 이렇게 변경된 코드는 테스트에 큰 영향을 미치게 된다. 아래는 새로운 테스트 코드이다.
 
-```
+```javascript
 const UsersService = require('./users');
 const assert = require('assert');
 
@@ -118,7 +118,7 @@ describe('Users service', () => {
 
 의존성 주입이 특히 Node.js에서 유명하지 않은 또 다른 이유가 있다. 의존성 주입을 OOP(객체지향프로그래밍)만을 위한 컨셉이라고 생각하는 경향 때문이다. 클래스에는 생성자(constructor)가 있기 때문에 의존성 주입을 진행하는 것은 아주 명확하고 쉽다. 하지만 Node.js는 class를 지원하지만 정적 타입 언어가 아니기 때문에 의존성을 주입할 때 의존성들을 하나씩 인자로 전달하는 것보다 객체로 감싸서 한 번에 주는 것이 더 좋다. 아래 코드를 보자
 
-```
+```javascript
 class UsersService {
   constructor({ usersRepository, mailer, logger }) {
     this.usersRepository = usersRepository;
@@ -149,7 +149,7 @@ const usersService = new UsersService({
 
 우리가 원하는 의존성을 선택, 주입하기 훨씬 쉬워졌다. 그리고 `Typescript` 를 사용한다면 더 편해진다. 아래 코드를 보자.
 
-```
+```javascript
 type UsersDependencies = {            // 여기에 모든 의존성을 작성한다.
   usersRepository: UserRepository
   mailer: Mailer
@@ -180,7 +180,7 @@ const usersService = new UserService({
 
 지금까지는 class에 관해서만 살펴봤다. 이제 function에 관해서 파악해보자. 사실 function이라고 해서 특별한 것은 없다. parameter로 의존성을 주입한다. 그게 끝이다. JavaScript의 `closure`덕분에 function내에서 `this` 없이 의존성에 편히 접근할 수 있다.
 
-```
+```javascript
 type UsersDependencies = {
   usersRepository: UsersRepository
   mailer: Mailer
@@ -215,7 +215,7 @@ const service = usersService({
 
 의존성 주입(DI)의 눈에 띄는 단점은 이용하려는 의존성들을 모두 미리 세팅해야 한다는 것이다. 아래 코드의 예시를 봐보자. 만약에 `users service`를 만들고 싶다면, 미리 `repository`도 만들어놔야 하고, `mailer`도 디테일하게 세팅해둬야 하고 `logger`도 가져오든 세팅하든 다 해놔야 한다. 이용할 모든 의존성을 구조화해둬야 한다는 말이다.
 
-```
+```javascript
 const UsersRepository = require('./users-repository');
 const Mailer = require('./mailer');
 const Logger = require('./logger');
@@ -255,7 +255,7 @@ usersService를 생성하기 전에 미리 의존성들을 준비해둬야 한�
 
 `Awilix`를 사용하면 자체적으로 종속성을 해결하는 특수 컨테이너를 만들 수 있다. 우리가 해야 할 일은 Type 설정만 제공해주면 된다. (예를 들면 UsersService가 class이다 라는 것만 전달하면 됨.)
 
-```
+```javascript
 const UsersRepository = require('./users-repository');
 const Mailer = require('./mailer');
 const Logger = require('./logger');
