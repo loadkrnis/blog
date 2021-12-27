@@ -1,4 +1,4 @@
-[thumbnail](./1.png)
+![thumbnail](./1.png)
 
 ## DI (Dependency Injection)
 
