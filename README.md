@@ -23,6 +23,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 
 ## NestJS
 - [[NestJS] JWT 로그인 구현 예제 (bcrypt, passport, JWT, cookie)](https://charming-kyu.tistory.com/39)
+- [[NestJS] TS를 위한 Lombok같은 건 없을까?](https://charming-kyu.tistory.com/40)
 
 ## AWS
 ### CloudFront
