@@ -1,7 +1,7 @@
 ## 서론
 
 최근 회사에서 NestJS로 개발하는 과정 중 Spring Boot와 비슷한 코드를 자주 보게됩니다.  
-NestJS는 [공식문서](https://docs.nestjs.kr/) (공식문서 최고) 이외에는 레퍼런스가 많이 없습니다.
+NestJS는 [공식문서](https://docs.nestjs.kr/) (최고) 이외에는 레퍼런스가 많이 없습니다.
 
 물론 [Medium](https://medium.com/)을 유료 구독하여 주기적으로 글을 확인합니다.  
 가끔 좋은 양질의 글이 나오긴 하지만,  
