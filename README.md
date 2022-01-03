@@ -21,6 +21,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 ### express
 - [[express] Redis 개념 및 nodejs 캐시 구현 예제](https://charming-kyu.tistory.com/37)
 - [[node.js] DI(의존성 주입) 구현하기](https://charming-kyu.tistory.com/17)
+- [[node.js] express 회원가입 인증 메일 발송 API](https://charming-kyu.tistory.com/6)
 ### sequelize
 - [[sequelize] 모델 커스텀 메서드 선언 방법 (ES6)](https://charming-kyu.tistory.com/22)
 - [AWS Lambda를 사용한 CloudFront 무효화 자동화 설정하기](https://charming-kyu.tistory.com/8)
