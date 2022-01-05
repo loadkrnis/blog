@@ -23,6 +23,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 - [[node.js] DI(의존성 주입) 구현하기](https://charming-kyu.tistory.com/17)
 - [[node.js] express 회원가입 인증 메일 발송 API](https://charming-kyu.tistory.com/6)
 - [[express] 유효성 검사를 위한 express-validator 사용하기](https://charming-kyu.tistory.com/14)
+- [[node.js] 견고한 node.js 프로젝트 설계하기 (번역)](https://charming-kyu.tistory.com/16)
 ### sequelize
 - [[sequelize] 모델 커스텀 메서드 선언 방법 (ES6)](https://charming-kyu.tistory.com/22)
 - [AWS Lambda를 사용한 CloudFront 무효화 자동화 설정하기](https://charming-kyu.tistory.com/8)
