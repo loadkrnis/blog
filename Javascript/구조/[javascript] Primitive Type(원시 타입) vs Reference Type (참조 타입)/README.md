@@ -5,12 +5,12 @@
 ## 원시 타입 (Primitive Type)
 
 **원시 타입**은 모두 하나의 값을 담고 있습니다.  
-- 문자(string)  
-- 숫자(number)  
-- bigint  
-- 불리언(boolean)  
-- null  
-- undefined  
+- 문자(string)
+- 숫자(number)
+- bigint
+- 불리언(boolean)
+- null
+- undefined
 - 심볼(symbol) => ES6부터 추가된 타입
 
 
