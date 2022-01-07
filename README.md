@@ -7,6 +7,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 ### 구조
 - [[javascript] Primitive Type(원시 타입) vs Reference Type (참조 타입)](https://charming-kyu.tistory.com/20)
 - [[javascript] 일반 함수와 화살표 함수의 차이 (feat. ES6)](https://charming-kyu.tistory.com/21)
+- [[javascript] 콜스택/메모리힙 구조, 데이터 저장/참조 원리](https://charming-kyu.tistory.com/19)
 </br>
 
 ## Typescript
