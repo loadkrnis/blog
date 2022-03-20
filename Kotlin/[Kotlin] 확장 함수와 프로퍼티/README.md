@@ -92,7 +92,7 @@ fun String.lastChar():Char = this.get(this.length - 1)
 ```
 
 위 처럼 **StringJoin.kt** 와 **ExtendFunction.kt**에서 같은 이름으로 선언되어 있는 확장 함수인 lastChar() 를 사용할때  
-**"... cannot be invoked as a function."**라는 에러가 발생합니다.
+"... cannot be invoked as a function." 라는 에러가 발생합니다.
 
 이럴 경우 import 할 때 **as** 키워드를 이용하여 해결할 수 있습니다.
 
