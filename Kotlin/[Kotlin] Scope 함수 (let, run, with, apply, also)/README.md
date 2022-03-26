@@ -18,7 +18,7 @@
 
 #### Person.kt
 
-```
+```kotlin
 data class Person(
   var name: String,
   var age: Int = 0,
@@ -34,7 +34,7 @@ data class Person(
 }
 ```
 
-```
+```kotlin
 Person("Charming", 20, "Seoul").let {
   println(it) // Person(name=Charming, age=20, address=Seoul)
   it.moveTo("Pangyo")
@@ -45,7 +45,7 @@ Person("Charming", 20, "Seoul").let {
 
 만약 _**let**_ 없이 동일한 내용의 코드를 작성한다면, 아래의 코드처럼 작성해야할 것입니다.
 
-```
+```kotlin
 val person = Person("Charming", 20, "Seoul")
 println(person) // Person(name=Charming, age=20, address=Seoul)
 person.moveTo("Pangyo")
@@ -83,7 +83,7 @@ scope 함수의 익명 함수(람다식) 내에서 객체는 실제 이름 대�
 둘 다 동일한 역할을 하는데,  
 상황 별로 각각의 장점과 단점에 대해 알아보고 권장하는 방식을 알아보겠습니다.
 
-```
+```kotlin
 // this
 "Hello".run {
   println("The receiver string length: $length")
@@ -105,7 +105,7 @@ _**run**_, _**with**_, _**apply**_ 는 _**this**_ 키워드로 람다 수신자
 따라서 수신자(_**this**_)로 컨텍스트 객체를 받는 scope 함수는 주로 객체의 함수를 호출하거나,   
 프로퍼티를 할당하는 것과 같이 객체 멤버를 처리할 때 사용하는 것을 권장합니다.
 
-```
+```kotlin
 val charming =
   Person("Charming").apply {
     age = 20 // this.age = 20 과 charming.age = 20 전부 동일한 역할을 합니다.
@@ -119,7 +119,7 @@ _**let**_, _**also**_ 는 객체를익명 함수 매개변수로 가집니다.
 만약 인자의 이름을 정하지 않았다면, 묵시적으로 기본 이름인 _**it**_ 으로 접근할 수 있습니다.  
 _**it**_ 은 _**this**_ 보다 짧으며, 주로 _**it**_ 을 사용한 표현식은 읽기 쉽습니다.
 
-```
+```kotlin
 fun getRandomInt(): Int {
   return Random.nextInt(100).also { 
     println("getRandomInt() generated value $it") 
@@ -132,7 +132,7 @@ val randomInt = getRandomInt()
 또한, 익명 함수의 매개변수를 지정함으로써   
 컨텍스트 객체의 커스텀한 이름을 설정할 수 있습니다.
 
-```
+```kotlin
 fun getRandomInt(): Int {
   return Random.nextInt(100).also { value -> 
     println("getRandomInt() generated value $value") 
@@ -156,7 +156,7 @@ scope 함수들은 리턴 값이 다릅니다.
 _**apply**_ 와 _**also**_ 의 리턴 값은 컨텍스트 객체 그 자신(_**this**_)입니다.  
 그러므로 _**apply**_ 와 _**also**_ 는 체이닝 함수로도 활용할 수 있습니다.
 
-```
+```kotlin
 val numberList =
   mutableListOf(6, 5, 4, 3)
     .also { println("push the list") }
@@ -176,7 +176,7 @@ _**let**_, _**run**_, _**with**_ 는 익명 함수의 결과를 반환합니다.
 따라서 이 scope 함수들은 변수에 연산 결과를 할당할 때나,  
 연산 결과에 연산을 연결할 때 등의 상황에서 사용할 수 있습니다.
 
-```
+```kotlin
 val numbers = mutableListOf("one", "two", "three")
 val countEndsWithE =
   numbers.run {
@@ -190,7 +190,7 @@ println("There are $countEndsWithE elements that end with e.")
 
 또한, 변수를 위한 임시 scope를 만들기 위해 리턴 값을 무시하고 scope 함수를 사용할 수 있습니다.
 
-```
+```kotlin
 val numbers = mutableListOf("one", "two", "three")
 with(numbers) {
   val firstItem = first()
@@ -215,7 +215,7 @@ with(numbers) {
 _**let**_은 호출 체인의 결과로 하나 혹은 그 이상의 함수를 호출할 때 사용됩니다.  
 예를 들어 다음의 코드는 컬렉션의 두 연산 결과를 출력합니다.
 
-```
+```kotlin
 val numbers = mutableListOf("one", "two", "three", "four", "five")
 val resultList = numbers.map { it.length }.filter { it > 3 }
 println(resultList) // [5, 4, 4]
@@ -223,7 +223,7 @@ println(resultList) // [5, 4, 4]
 
 같은 기능을 _**let**_ 으로 아래와 같이 작성할 수 있습니다.
 
-```
+```kotlin
 val numbers = mutableListOf("one", "two", "three", "four", "five")
 numbers.map { it.length }.filter { it > 3 }.let {
   println(it) // [5, 4, 4]
@@ -234,7 +234,7 @@ numbers.map { it.length }.filter { it > 3 }.let {
 만약 scope 함수 블록에 _**it**_ 을 인자로 가지는 단일 함수가 있다면  
 람다 대신 참조(**::**)를 사용할 수 있습니다.
 
-```
+```kotlin
 val numbers = mutableListOf("one", "two", "three", "four", "five")
 numbers.map { it.length }.filter { it > 3 }.let(::println) // [5, 4, 4]
 ```
@@ -242,7 +242,7 @@ numbers.map { it.length }.filter { it > 3 }.let(::println) // [5, 4, 4]
 _**let**_ 은 종종 **null**이 아닌 상태에서만 코드 블럭을 실행시키는 데에 사용됩니다.  
 **null**이 아닌 객체에 동작을 수행하기 위해서는, 해당 객체에 **safe call(?.)**을 사용하고 let을 호출하면 됩니다.
 
-```
+```kotlin
 fun main(str: String?) {
   val length =
     str?.let {
@@ -257,7 +257,7 @@ fun main(str: String?) {
 _**let**_ 을 사용하는 또 다른 방법은 코드 가독성을 높이기 위해 제한된 scope 내에서 지역 변수를 사용하는 것입니다.  
 컨텍스트 객체를 이용해 새로운 변수를 선언할 때 주로 사용됩니다.
 
-```
+```kotlin
 val numbers = listOf("one", "two", "three", "four")
 val modifiedFirstItem =
   numbers
