@@ -50,6 +50,8 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 ## 보안
 ### OAuth2.0
 - [OAuth 2.0 개념 총 정리](https://charming-kyu.tistory.com/36)
+### SSO
+- [서로 다른 도메인 간 통합 인증(SSO) 구현 방법](https://charming-kyu.tistory.com/43)
 </br>
 
 ## 회고
