@@ -58,10 +58,9 @@ scope 함수는 코틀린만의 새로운 기술이 적용된 것이 아닌,
 **코드를 좀 더 간결하고 읽기 쉽게 만들어주는 것입니다.**
 
 scope 함수들의 비슷한 점들로 인해,  
-특정 상황에 딱 맞아 떨어지는 함수를 사용하는 것이 모호할 수 있습니다.  
-  
-**이 때 작성하고자 하는 코드의 의도와 프로젝트의 컨벤션으로 사용할 함수를 쉽게 결정할 수 있습니다.  
-**  
+특정 상황에 딱 맞아 떨어지는 함수를 사용하는 것이 모호할 수 있습니다.
+
+**_이 때 작성하고자 하는 코드의 의도와 프로젝트의 컨벤션으로 사용할 함수를 쉽게 결정할 수 있습니다._**  
 아래에서 scope 함수와 각각의 차이점에 대해 상세히 살펴보겠습니다.
 
 ## Scope 함수 간 차이점
@@ -69,8 +68,8 @@ scope 함수들의 비슷한 점들로 인해,
 scope 함수는 본질이 비슷하기 때문에, 각각의 차이점을 잘 아는 것이 중요합니다.  
 각 scope 함수에는 두 가지 큰 차이점이 있습니다.
 
->  - 객체의 컨텍스트를 참조하는 방식  
->  - 리턴 값
+> -   객체의 컨텍스트를 참조하는 방식
+> -   리턴 값
 
 ### 컨텍스트를 참조하는 방식 : this 혹은 it
 
@@ -99,10 +98,10 @@ scope 함수의 익명 함수(람다식) 내에서 객체는 실제 이름 대�
 
 _**run**_, _**with**_, _**apply**_ 는 _**this**_ 키워드로 람다 수신자로서 컨텍스트 객체를 참조합니다.  
 그러므로, 이 람다에서 객체는 일반 객체 함수로도 사용이 가능합니다.  
-대부분의 경우, 수신 객체의 멤버에 접근할 때 _**this**_ 를 생략함으로써 코드를 간략하게 작성할 수 있습니다.  
-  
+대부분의 경우, 수신 객체의 멤버에 접근할 때 _**this**_ 를 생략함으로써 코드를 간략하게 작성할 수 있습니다.
+
 반면, _**this**_ 가 생략되면, 수신 객체 멤버와 외부 변수를 구분하기 어려울 수 있습니다.  
-따라서 수신자(_**this**_)로 컨텍스트 객체를 받는 scope 함수는 주로 객체의 함수를 호출하거나,   
+따라서 수신자(_**this**_)로 컨텍스트 객체를 받는 scope 함수는 주로 객체의 함수를 호출하거나,  
 프로퍼티를 할당하는 것과 같이 객체 멤버를 처리할 때 사용하는 것을 권장합니다.
 
 ```kotlin
@@ -129,7 +128,7 @@ fun getRandomInt(): Int {
 val randomInt = getRandomInt()
 ```
 
-또한, 익명 함수의 매개변수를 지정함으로써   
+또한, 익명 함수의 매개변수를 지정함으로써  
 컨텍스트 객체의 커스텀한 이름을 설정할 수 있습니다.
 
 ```kotlin
@@ -209,10 +208,9 @@ with(numbers) {
 ### let
 
 컨텍스트 객체는 인자(_**it**_)으로 사용 가능합니다.  
-**이 컨텍스트 객체의 리턴 값은 람다의 결과입니다.  
-**
+이 컨텍스트 객체의 **리턴 값은 람다의 결과입니다.**
 
-_**let**_은 호출 체인의 결과로 하나 혹은 그 이상의 함수를 호출할 때 사용됩니다.  
+_**let**_ 은 호출 체인의 결과로 하나 혹은 그 이상의 함수를 호출할 때 사용됩니다.  
 예를 들어 다음의 코드는 컬렉션의 두 연산 결과를 출력합니다.
 
 ```kotlin
@@ -232,7 +230,7 @@ numbers.map { it.length }.filter { it > 3 }.let {
 ```
 
 만약 scope 함수 블록에 _**it**_ 을 인자로 가지는 단일 함수가 있다면  
-람다 대신 참조(**::**)를 사용할 수 있습니다.
+람다 대신 **메소드참조(::)**를 사용할 수 있습니다.
 
 ```kotlin
 val numbers = mutableListOf("one", "two", "three", "four", "five")
@@ -269,3 +267,160 @@ val modifiedFirstItem =
     .uppercase(Locale.getDefault())
 println(modifiedFirstItem) // !ONE!
 ```
+
+### with
+
+_**with**_ 는 비 확장함수이며, 컨텍스트 객체는 익명 함수의 매개변수로 전달되지만,  
+함수 안에서는 수신자(**this**)로 사용 가능합니다.  
+**리턴 값은 람다 결과 입니다.**
+
+**다른 함수와의 차이점은확장 함수 호출 형식이 아닌 일반 함수 호출 형식으로 쓰인다는 점입니다.**
+
+_**with**_ 는 람다 결과 없이 컨텍스트 객체의 호출 함수에서 사용하는 것을 권장합니다.  
+아래 코드에서 _**with**_ 는 _'**이 객체로 다음을 수행하라 (with this object, do the following)'**_ 뜻으로 해석할 수 있습니다.
+
+```kotlin
+val numbers = mutableListOf("one", "two", "three")
+with(numbers) {
+  println(this) // [one, two, three]
+  println(size) // 3
+}
+```
+
+_**with**_ 의 또 다른 사용법은 값을 계산할 때 사용되는  
+헬퍼 객체 (helper object)의 프로퍼티나 함수를 선언하는데 사용하는 것입니다.
+
+```kotlin
+val numbers = mutableListOf("oen", "two", "three")
+val firstAndLast = with(numbers) { "${first()} ${last()}" }
+println(firstAndLast) // oen three
+```
+
+### run
+
+컨텍스트 객체는 수신자(**this**)로 사용가능합니다.  
+**리턴 값은 람다 결과입니다.**
+
+_**run**_ 은 _**with**_ 와 같은 역할을 하지만, _**let**_ 처럼 컨텍스트 객체의 확장 함수처럼 호출합니다.  
+람다가 객체 초기화와 리턴 값 연산을 모두 포함하고 있을 때 유용합니다.
+
+```kotlin
+val service = WebClientService("https://example.com", 80)
+
+val result =
+  service.run {
+    port = 8080
+    query(prepareRequest() + " to port $port")
+  }
+
+// let() 함수로 쓰인 위와 동일한 코드:
+val letResult =
+  service.let {
+    it.port = 8080
+    it.query(it.prepareRequest() + " to port ${it.port}")
+  }
+```
+
+_**run**_ 은 수신 객체에서 호출하는 것 이외에, 비확장함수로 사용할 수 있습니다.  
+비확장(non-extention) _**run**_ 은 표현식이 필요한 곳에서 다수의 구문을 실행할 수 있습니다.
+
+```kotlin
+val hexNumberRegex = run {
+  val digits = "0-9"
+  val hexDigits = "A-Fa-f"
+  val sign = "+-"
+
+  Regex("[$sign]?[$digits$hexDigits]+")
+}
+
+for (match in hexNumberRegex.findAll("+1234 -FFFF not-a-number")) {
+  println(match.value)
+  // +1234
+  // -FFFF
+  // -a
+  // be
+}
+```
+
+### apply
+
+컨텍스트 객체는 수신자(**this**)로 사용할 수 있습니다.  
+**리턴 값은 객체 자기 자신(this)입니다.**
+
+_**apply**_ 는 값을 반환하지 않고, 주로 수신 객체의 멤버를 연산하는 곳에 사용합니다.  
+일반적인 경우 객체 설정(**configuration**)입니다.  
+**'다음의 지시를 객체에 적용하라 (apply the following assignments to the object)'** 뜻으로 해석할 수 있습니다.
+
+```kotlin
+val adam =
+  Person("Charming").apply {
+    age = 32
+    address = "Pangyo"
+  }
+```
+
+자기 자신(**this**)를 리턴 값으로 가짐으로써, _**apply**_ 를 더 복잡한 프로세스를 위한 호출 체인에 쉽게 포함할 수 있습니다.
+
+### also
+
+컨텍스트 객체는 인자(**it**)로 사용 가능합니다.  
+**리턴 값은 객체 자기 자신입니다.**
+
+_**also**_ 는 컨텍스트 객체를 인자로 가지는 것과 같은 작업을 수행하는데 좋습니다.  
+로깅이나 디버그 정보를 출력하는 것과 같이 객체를 변화시키지 않는 부가적인 작업에 적합합니다.  
+대부분의 프로그램의 로직을 파괴하지 않고도 호출 체인에서 _**also**_ 의 호출을 제거하는 것이 가능합니다.
+
+**'그리고 또한 다음을 수행하라 (and also do the following)'** 뜻으로 해석할 수 있습니다.
+
+```kotlin
+val numbers = mutableListOf("one", "two", "three")
+numbers
+  .also { println(it) } //  [one, two, three]
+  .add("four")
+```
+
+## 함수 선택 (Function Selection)
+
+아래의 표는 목적에 맞게 scope 함수를 선택할 수 있는 차이점을 정리한 표입니다.
+
+| Functions | Object   Reference | Return   Value | 확장 함수로 호출 |
+| --- | --- | --- | --- |
+| _**let**_ | it | 함수 리턴 값 | O |
+| _**run**_ | this | 함수 리턴 값 | O |
+| _**run**_ | \- | 함수 리턴 값 | X   (컨텍스트 객체 없이도 호출 가능) |
+| _**with**_ | this | 함수 리턴 값 | X   (매개변수로 컨텍스트 객체를 사용) |
+| _**apply**_ | this | 자기 자신 (this) | Y |
+| _**also**_ | it | 자기 자신 (this) | Y |
+
+아래는 의도한 목적에 따라 scope 함수를 선택할 수 있는 간략한 가이드입니다.
+
+> 널이 아닌 객체에 람다를 실행할 때: let  
+> 지역(local) scope에서 표현식(expression)을 변수로 선언할 때: let  
+> 객체 설정(configuration): apply  
+> 객체 설정(configuration)과 결과를 계산할 때: run  
+> 표현식이 필요한 곳에 연산을 실행할 때: 비 확장(non-extension) run  
+> 부가적인 실행: also  
+> 객체에 대한 그룹 함수 호출: with
+
+제일 중요한 점은 scope 함수의 사용 용도가 중복되기때문에,   
+프로젝트나 팀에서의 구체적인 컨벤션에 따라 어떤 함수를 사용할지 정하시면 좋습니다.
+
+scope 함수는 코드를 더 간결하게 만드는 방법이지만, 남용하는 것은 피해야합니다.  
+코드 가독성을 떨어트리고 에러를 발생시킬 수 있기 때문입니다.  
+scope 함수를 중첩하여 사용하는 것은 피해야합니다.  
+그리고 this 혹은 it 으로 현재의 컨텍스트 객체 값을 혼동하기 쉽기 때문에  
+연속(chaining)하여 사용할 때는 주의해야합니다.
+
+출처
+
+[Scope functions | Kotlin kotlinlang.org](https://kotlinlang.org/docs/scope-functions.html#takeif-and-takeunless)
+
+---
+
+몇가지 예제 코드는 해당 설명의 특성을 잘 살리지 못한 것 같아서 예제 코드를 수정하였습니다.  
+해석하면서 개인적으로 느낀점은 코틀린은 정말 함수형 프로그래밍을 위한 언어라는 느낌이 들었습니다.  
+그렇다고 완전 FP에 치우친 것이 아닌, (고급 언어 + OOP + FP) 세가지의 조화로운 조합을 경험할 수 있었습니다.
+
+\[OOP vs FP\] 무엇이 더 좋은지 판단하는 두가지의 선택지에서  
+OOP, FP의 장점만 쏙 빼서 코틀린이라는 언어가 생긴 느낌이라.  
+저에게는 총 세가지의 선택지가 되었습니다.
