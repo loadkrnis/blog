@@ -38,6 +38,11 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 - [[NestJS] TS를 위한 Lombok같은 건 없을까?](https://charming-kyu.tistory.com/40)
 </br>
 
+## Kotlin
+- [[Kotlin] 확장 함수와 프로퍼티](https://charming-kyu.tistory.com/42)
+- [[Kotlin] Scope 함수 (let, run, with, apply, also)](https://charming-kyu.tistory.com/44)
+</br>
+
 ## AWS
 ### CloudFront
 - [AWS S3 + CloudFront 대용량 파일 전송](https://charming-kyu.tistory.com/7)
