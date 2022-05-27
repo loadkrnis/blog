@@ -26,6 +26,7 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 - [[express] 유효성 검사를 위한 express-validator 사용하기](https://charming-kyu.tistory.com/14)
 - [[node.js] 견고한 node.js 프로젝트 설계하기 (번역)](https://charming-kyu.tistory.com/16)
 - [[node.js] crypto를 이용한 Django 패스워드 저장방식 PBKDF2 알고리즘 구현하기](https://charming-kyu.tistory.com/10)
+- [[node.js] localhost https 적용 (SSL)](https://charming-kyu.tistory.com/46)
 ### sequelize
 - [[sequelize] 모델 커스텀 메서드 선언 방법 (ES6)](https://charming-kyu.tistory.com/22)
 - [AWS Lambda를 사용한 CloudFront 무효화 자동화 설정하기](https://charming-kyu.tistory.com/8)
@@ -41,6 +42,8 @@ https://charming-kyu.tistory.com 에서 작성되는 게시글 및 코드입니�
 ## Kotlin
 - [[Kotlin] 확장 함수와 프로퍼티](https://charming-kyu.tistory.com/42)
 - [[Kotlin] Scope 함수 (let, run, with, apply, also)](https://charming-kyu.tistory.com/44)
+- [[Kotlin] coroutine, suspend 함수 정리 및 예제](https://charming-kyu.tistory.com/45)
+- [[Kotlin] companion object, Java static 차이점](https://charming-kyu.tistory.com/47)
 </br>
 
 ## AWS
